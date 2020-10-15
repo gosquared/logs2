@@ -1,9 +1,9 @@
 import { get as getCw } from './src/aws';
-import { Config } from "aws-sdk";
 import Logger from "./src/logger";
+import { AwsConfig } from './types';
 
 interface Settings {
-  aws?: Config
+  aws?: AwsConfig
 }
 
 const loggers: Map<string, Logger> = new Map();

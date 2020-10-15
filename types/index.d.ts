@@ -5,3 +5,10 @@ export interface Message {
   data: MessageData;
   timestamp: Date;
 }
+
+export interface AwsConfig {
+  region?: string;
+  accessKeyId?: string;
+  secretAccessKey?: string;
+  apiVersion: string;
+}
