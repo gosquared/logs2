@@ -1,5 +1,5 @@
 {
-  "name": "logs2",
+  "name": "@gosquared/logs2",
   "version": "0.0.1",
   "description": "Cloudwatch logger",
   "main": "dist/main.js",
