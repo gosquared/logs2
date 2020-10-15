@@ -5,7 +5,7 @@
   "main": "dist/main.js",
   "scripts": {
     "test": "TS_NODE_FILES=true mocha -r ts-node/register --extension ts --exit",
-    "prepublish": "tsc"
+    "prepare": "tsc"
   },
   "author": "",
   "license": "ISC",
