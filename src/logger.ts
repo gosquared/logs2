@@ -16,6 +16,10 @@ class SaveError extends Error {
   e?: Error
 };
 
+class LogStreamError extends Error {
+  e?: Error
+}
+
 export default class Logger {
   cw: CloudWatchLogs;
   logGroup: string;
@@ -47,7 +51,17 @@ export default class Logger {
       this.schedule();
       return;
     }
-    const logStream = await this.getLogStream();
+
+    let logStream;
+    try {
+      logStream = await this.getLogStream();
+    } catch (e) {
+      const err = new LogStreamError('could not create log stream');
+      err.e = e;
+      events.emit('error', err);
+      return;
+    }
+
     const messages = this.messages;
     this.messages = [];
 
