@@ -59,6 +59,7 @@ export default class Logger {
       const err = new LogStreamError('could not create log stream');
       err.e = e;
       events.emit('error', err);
+      this.schedule();
       return;
     }
 
