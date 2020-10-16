@@ -39,7 +39,13 @@ export function save(
  * @param messages
  * @param token
  */
-export async function retry(cw: CloudWatchLogs, group: string, stream: string, messages: Message[], token?: string): Promise<string | undefined> {
+export async function retry(
+  cw: CloudWatchLogs,
+  group: string,
+  stream: string,
+  messages: Message[],
+  token?: string
+): Promise<string | undefined> {
   let attempts = 0;
   let err: AWSError | undefined;
   let result;
