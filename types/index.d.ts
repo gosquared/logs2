@@ -1,3 +1,9 @@
+export interface Settings {
+  aws?: AwsConfig;
+  logStream?: string;
+  interval?: number; // milliseconds
+}
+
 export interface MessageData {};
 
 export interface Message {

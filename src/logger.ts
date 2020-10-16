@@ -1,14 +1,9 @@
 import { CloudWatchLogs, AWSError } from "aws-sdk";
-import { Message, MessageData } from "../types";
+import { Message, MessageData, Settings } from "../types";
 import { retry } from "./save";
 import cuid from 'cuid';
 import { create as createLogStream } from './logStream';
 import events from './events';
-
-interface Settings {
-  logStream?: string;
-  interval?: number; // milliseconds
-}
 
 type SequenceToken = string;
 
