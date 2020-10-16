@@ -47,6 +47,7 @@ export default class Logger {
   }
 
   async save() {
+    if (this.timeout) clearTimeout(this.timeout);
     if (this.messages.length === 0) {
       this.schedule();
       return;
@@ -108,7 +109,7 @@ export default class Logger {
   }
 
   async stop() {
-    clearTimeout(this.timeout);
     await this.save();
+    clearTimeout(this.timeout);
   }
 }
