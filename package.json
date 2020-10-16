@@ -4,7 +4,7 @@
   "description": "Cloudwatch logger",
   "main": "dist/main.js",
   "scripts": {
-    "test": "TS_NODE_FILES=true mocha -r ts-node/register --extension ts --exit",
+    "test": "TS_NODE_FILES=true mocha -r ts-node/register --extension ts --timeout 10000 --exit",
     "prepare": "tsc"
   },
   "author": "",
