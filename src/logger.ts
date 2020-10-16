@@ -7,12 +7,13 @@ import events from './events';
 
 type SequenceToken = string;
 
-class SaveError extends Error {
-  e?: Error
-};
-
-class LogStreamError extends Error {
-  e?: Error
+class LoggerError extends Error {
+  e?: Error;
+}
+class SaveError extends LoggerError {}
+class LogStreamError extends LoggerError {}
+class DroppedError extends LoggerError {
+  messages?: Message[];
 }
 
 export default class Logger {
@@ -24,6 +25,7 @@ export default class Logger {
   token?: SequenceToken;
   timeout?: any;
   interval?: number = 5000;
+  limit = 10000;
 
   constructor(cw: CloudWatchLogs, logGroup: string, settings?: Settings) {
     this.cw = cw;
@@ -38,7 +40,13 @@ export default class Logger {
   }
 
   addMessage(message: Message) {
-    this.messages.push(message);
+    const length = this.messages.push(message);
+    if (length < this.limit) return;
+    const messages = this.messages;
+    this.messages = [];
+    const err = new DroppedError('message limit reached');
+    err.messages = messages;
+    events.emit('error', err);
   }
 
   async save() {
