@@ -32,8 +32,7 @@ export function save(
 }
 
 /**
- * can be called without token, but this requires an extra round trip to
- * get from cwlogs.
+ * can be called without token, but requires an extra round trip to cwlogs.
  * @param cw
  * @param group
  * @param stream
