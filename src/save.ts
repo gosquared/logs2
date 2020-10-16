@@ -2,6 +2,10 @@ import { Message } from "../types";
 import { CloudWatchLogs, AWSError } from "aws-sdk";
 import { PutLogEventsRequest, InputLogEvents } from "aws-sdk/clients/cloudwatchlogs";
 
+class RetryError extends Error {
+  e?: Error
+};
+
 export function save(
   cw: CloudWatchLogs,
   group: string,
@@ -39,7 +43,11 @@ export async function retry(cw: CloudWatchLogs, group: string, stream: string, m
   }
 
   while (err) {
-    if (attempts >= 5) return;
+    if (attempts >= 5) {
+      const err2 = new RetryError('retry limit reached');
+      err2.e = err;
+      throw err2;
+    }
     const match = err.message.match(/sequenceToken: (.+)/);
     if (!match) throw err;
     token = match[1];
