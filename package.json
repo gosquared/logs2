@@ -1,6 +1,6 @@
 {
   "name": "@gosquared/logs2",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Cloudwatch logger",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
