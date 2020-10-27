@@ -13,6 +13,7 @@ export function getLogger(logGroup: string, settings: Settings) {
   logger = new Logger(CloudwatchLogs, logGroup, settings);
   loggers.set(logGroup, logger);
   logger.start();
+  return logger;
 }
 
 export async function stop() {
