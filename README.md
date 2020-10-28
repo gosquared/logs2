@@ -40,6 +40,23 @@ const data = { test: 1 };
 logger.log(message, data);
 ```
 
+## Permissions
+Grant the following on IAM role to allow writing to log group:
+
+```json
+// replace LOGGROUP with log group name
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "logs:PutLogEvents",
+      "Resource": "arn:aws:logs:*:*:log-group:LOGGROUP:log-stream:*"
+    }
+  ]
+}
+```
+
 ## Shut down
 Save pending logs to cloudwatch before exit:
 
