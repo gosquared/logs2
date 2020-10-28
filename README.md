@@ -41,7 +41,7 @@ logger.log(message, data);
 ```
 
 ## Permissions
-Grant the following on IAM role to allow writing to log group:
+Grant on IAM role to allow writing to log group:
 
 ```json
 // replace LOGGROUP with log group name
@@ -50,8 +50,14 @@ Grant the following on IAM role to allow writing to log group:
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": "logs:PutLogEvents",
-      "Resource": "arn:aws:logs:*:*:log-group:LOGGROUP:log-stream:*"
+      "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": [
+        "arn:aws:logs:*:*:log-group:LOGGROUP",
+        "arn:aws:logs:*:*:log-group:LOGGROUP:log-stream:*"
+      ]
     }
   ]
 }
@@ -72,7 +78,7 @@ async function stop() {
 Errors are emitted as events:
 
 ```javascript
-const events = require('@gosquared/logs2/src/events');
+const events = require('@gosquared/logs2/dist/src/events');
 events.on('error', e => {
   console.error(e);
 });
