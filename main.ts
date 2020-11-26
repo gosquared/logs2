@@ -1,6 +1,7 @@
 import { get as getCw } from './src/aws';
 import Logger from "./src/logger";
 import { Settings } from './types';
+import events from './src/events';
 
 const loggers: Map<string, Logger> = new Map();
 
@@ -22,3 +23,4 @@ export async function stop() {
   }
 }
 
+export { events };

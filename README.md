@@ -78,7 +78,7 @@ async function stop() {
 Errors are emitted as events:
 
 ```javascript
-const events = require('@gosquared/logs2/dist/src/events');
+const { events } = require('@gosquared/logs2');
 events.on('error', e => {
   console.error(e);
 });
