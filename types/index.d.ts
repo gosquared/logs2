@@ -1,3 +1,5 @@
+import { ConfigInput as AwsConfig } from './aws';
+
 export interface Settings {
   aws?: AwsConfig;
   logStream?: string;
@@ -10,11 +12,4 @@ export interface Message {
   text: string;
   data: MessageData;
   timestamp: Date;
-}
-
-export interface AwsConfig {
-  region?: string;
-  accessKeyId?: string;
-  secretAccessKey?: string;
-  apiVersion: string;
 }

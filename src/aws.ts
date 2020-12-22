@@ -1,14 +1,15 @@
 import AWS, { CloudWatchLogs } from 'aws-sdk';
-import { AwsConfig } from '../types';
+import { ConfigInput, Config } from '../types/aws';
 
 const apiVersion = '2014-03-28';
 
 let logs: CloudWatchLogs;
 
-export function get(config?: AwsConfig) {
+export function get(config: ConfigInput = {}) {
   if (logs) return logs;
-  if (config) config.apiVersion = apiVersion;
-  else config = { apiVersion };
-  logs = new AWS.CloudWatchLogs(config);
+  // don't modify original config object in case it's used globally
+  // across many services
+  const _config: Config = { ...config, apiVersion };
+  logs = new AWS.CloudWatchLogs(_config);
   return logs
 }
