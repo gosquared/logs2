@@ -6,12 +6,13 @@
   "types": "dist/main.d.ts",
   "scripts": {
     "test": "TS_NODE_FILES=true mocha -r ts-node/register --extension ts --timeout 10000 --exit",
-    "prepare": "tsc"
+    "prepare": "tsc",
+    "watch": "tsc -w"
   },
   "author": "Geoff Wagstaff <geoff@gosquared.com>",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.771.0",
+    "aws-sdk": "^2.955.0",
     "cuid": "^2.1.8"
   },
   "devDependencies": {
