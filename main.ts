@@ -4,7 +4,7 @@ import { Settings } from './types';
 
 const loggers: Map<string, Logger> = new Map();
 
-export function getLogger(logGroup: string, settings: Settings) {
+export function getLogger(logGroup: string, settings: Settings = {}) {
   const CloudwatchLogs = getCw(settings.aws);
 
   let logger = loggers.get(logGroup);
